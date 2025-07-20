@@ -1,0 +1,160 @@
+Constructor Overloading
+
+using System;
+
+public class Student
+{
+    public int x;
+    public string name;
+    public int id;
+    public Student(int x)
+    {
+        Console.WriteLine(x);
+    }
+    public Student(int i,string n)
+    {
+        id=i;
+        name=n;
+        Console.WriteLine(id +" "+ name);
+    }
+}
+class TestStudent
+{
+    public static void Main(String[] args)
+    {
+        Student s1=new Student(5);
+        Student s2=new Student(413,"Ammu");
+    }
+}
+
+
+Method Overloading
+
+using System;
+public class Circle
+{
+    int r;
+    double f;
+    public void radius(int r)
+    {
+        Console.WriteLine(3.14*r*r);
+    }
+    public void radius(double f)
+    {
+        Console.WriteLine(3.14*f*f);
+    }
+    public void radius()
+    {
+        r=10;
+        Console.WriteLine(3.14*r*r);
+    }
+}
+
+public class Test
+{
+    public static void Main(string[] args)
+    {
+        Circle obj=new Circle();
+        obj.radius(7);
+        obj.radius(1.232);
+        obj.radius();
+    }
+}
+
+
+Single Inheritance
+
+using System;
+public class Animal
+{   
+    protected string col="Black";
+    public void display(){
+        Console.WriteLine("I am the Animal Class");
+    }
+}
+public class Dog : Animal
+{
+    string habit="Barking";
+    
+    public void show(){
+        
+        Console.WriteLine("I am the dog Class");
+        Console.WriteLine("My color and Habits are: "+col+","+habit);
+    }
+}
+
+public class Test
+{
+    public static void Main(string[] args)
+    {
+        Dog obj=new Dog();
+        obj.show();
+    }
+}
+
+Sealed Class
+
+using System;
+sealed class Animal
+{   public void display(){
+        Console.WriteLine("I am Animal Class and also the sealed class.cannot inherited");
+    }
+}
+public class Dog : Animal
+{
+    public void show(){
+        Console.WriteLine("I am the dog Class");
+    }
+}
+
+public class Test
+{
+    public static void Main(string[] args)
+    {
+        Animal o=new Animal();
+        Dog obj=new Dog();
+        o.display();
+        obj.show();
+    }
+}
+
+output
+
+/tmp/Htr1qdQiCK/Main.cs(7,20): error CS0509: 'Dog': cannot derive from sealed type 'Animal'
+
+=== Code Exited With Errors ===
+
+Abstract Class 
+
+using System;
+
+abstract class Teacher
+{
+    public int a,b;
+    abstract public void sum(int a,int b);
+
+    public void multiplication(int c,int d)
+    {
+        a=c;
+        b=d;
+        Console.WriteLine("Multiplication of 2 numbers : "+(a*b));
+    }
+}
+
+class Student : Teacher
+{
+    public override void sum(int a,int b)
+    {
+        Console.WriteLine("Addition of 2 numbers : "+(a+b));
+    }
+}
+
+class Test
+{
+    public static void Main(string[] args)
+    {
+        Student s = new Student();
+        s.sum(5,7);
+        s.multiplication(3,4);  // can also test multiplication
+    }
+}
